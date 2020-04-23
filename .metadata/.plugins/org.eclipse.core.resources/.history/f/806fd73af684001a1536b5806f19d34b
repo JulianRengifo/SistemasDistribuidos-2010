@@ -15,7 +15,7 @@ public class MainServerThread {
 
 		
 		
-		ServerSocket ss = new ServerSocket(1234);
+		ServerSocket ss = new ServerSocket(8090);
 		
 		System.out.println("Serever> Runnig...");
 		
@@ -23,20 +23,18 @@ public class MainServerThread {
 		
 		while (true) {
 			
-			try {
+			
 			
 			Socket s = new Socket();
 			
 			s= ss.accept();
 			
+			
+			
 			((ServerThread) new ServerThread (s, idClient)).start();
 			
 			idClient ++;
 			
-} catch (IOException e) {
-	e.printStackTrace();
-}		
-}
+}catch (IOException e)
 	}
 }
-

@@ -15,15 +15,13 @@ public class MainServerThread {
 
 		
 		
-		ServerSocket ss = new ServerSocket(1234);
+		ServerSocket ss = new ServerSocket(8090);
 		
 		System.out.println("Serever> Runnig...");
 		
 		int idClient = 0;
 		
 		while (true) {
-			
-			try {
 			
 			Socket s = new Socket();
 			
@@ -33,10 +31,10 @@ public class MainServerThread {
 			
 			idClient ++;
 			
-} catch (IOException e) {
+}catch(IOException e) {
 	e.printStackTrace();
-}		
+}
+		
 }
 	}
-}
 

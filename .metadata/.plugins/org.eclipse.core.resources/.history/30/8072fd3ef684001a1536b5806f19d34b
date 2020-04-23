@@ -27,18 +27,25 @@ public class Client{
 		
 		try {
 			s = new Socket (HOST,PORT);
-		ois = new ObjectInputStream(s.getInputStream());
-		oos = new ObjectOutputStream (s.getOutputStream());
 		
-		Persona persona = new Persona (IDclient, "julian", "23", "M");
+		oos = new ObjectOutputStream (s.getOutputStream());
+		ois = new ObjectInputStream(s.getInputStream());
+		
+		Persona persona = new Persona ("23", "julian", IDclient, "M");
 		System.out.println(persona);
 		
 		oos.writeObject(persona);
 		
+		System.out.println("Client> receive answer server" + (String)ois.readObject());
+		
 		ois.readObject();
+		
+		System.out.printl(""+ois.readObject());
 		
 		ois.close();
 		oos.close();
+		
+		s.close();
 		
 	}catch(IOException e) {
 		System.out.println(e.getMessage());

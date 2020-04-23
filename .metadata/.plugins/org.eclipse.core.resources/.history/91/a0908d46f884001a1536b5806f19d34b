@@ -40,9 +40,9 @@ public class ServerThread extends Thread {
 	public void run() {
 		
 		do {
-			
 			Persona persona = new Persona();
-			
+		
+		
 try {
 	
 	
