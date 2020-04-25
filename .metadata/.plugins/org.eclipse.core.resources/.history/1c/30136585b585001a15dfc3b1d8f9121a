@@ -40,9 +40,9 @@ public class ServerThread extends Thread {
 	public void run() {
 		
 		do {
+			
 			Persona persona = new Persona();
-		
-		
+			
 try {
 	
 	
@@ -55,7 +55,7 @@ try {
 		
 	}catch (Exception e) {
 		
-		e.printStackTrace();
+		
 		System.out.println("Server>"+e.getMessage());
 		break;
 	
@@ -63,7 +63,10 @@ try {
 	
 	}while(true);
 		
-		try {s.cles
+		try {s.close();
+		
+		}catch (IOException e) {e.printStackTrace();}
+		}
 
 }
 

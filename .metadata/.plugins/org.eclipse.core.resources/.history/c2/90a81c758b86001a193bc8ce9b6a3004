@@ -1,0 +1,111 @@
+package services;
+
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.Random;
+
+import data.Empleado;
+import data.Estudiante;
+import data.Persona;
+
+import java.io.IOException;
+
+public class Client extends Thread{
+	
+	protected Socket s;
+	
+	private final int PORT = 1234;
+	private final String HOST = "localhost";
+	
+	protected ObjectInputStream ois;
+	protected ObjectOutputStream oos;
+	
+	private int IDClient;
+
+	public Client(int IDCliente)  {
+		
+		this.IDClient = IDClient;
+		
+	}
+		
+	
+	
+		@Override
+	public void run() {
+			try {
+				this.onClient(this.IDClient);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
+
+
+
+		public void onClient(int IDclient) throws ClassNotFoundException{
+	
+		
+		try {
+			s = new Socket (HOST,PORT);
+		
+		oos = new ObjectOutputStream (s.getOutputStream());
+		ois = new ObjectInputStream(s.getInputStream());
+		
+		
+		System.out.println("Client> receive answer server" + (String)ois.readObject());
+		
+		ois.readObject();
+		
+		System.out.println(""+ois.readObject());
+		
+		ois.close();
+		oos.close();
+		
+		Random random = new Random();
+		int r = random.nextInt(3);
+		
+		switch(r) {
+		
+		case 0:{
+			
+			Persona persona = new Persona (IDclient, "julian", "23", "M");
+			System.out.println("Client"+IDClient+ "Send Object" +persona);
+			oos.writeObject(persona);
+			break;
+			
+		}
+		
+		case 1: {
+			
+			Estudiante estudiante = new Estudiante (1620, "Sistemas", "03/02/2017");
+			System.out.println("Client"+IDClient+ "Send Object estudiante" +estudiante);
+			oos.writeObject(estudiante);
+			break;
+			
+		}
+		
+		case 2:{
+			
+			Empleado empleado = new Empleado ("Director", "12/05/2020", 3000000);
+			System.out.println("Client"+IDClient+ "Send Object empleado" +empleado);
+			oos.writeObject(empleado);
+			break;
+			
+		}
+		
+		
+		}
+		
+		s.close();
+		
+	}catch(IOException e) {
+		System.out.println(e.getMessage());
+	}
+
+	
+	}
+}

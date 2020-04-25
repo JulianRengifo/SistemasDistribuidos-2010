@@ -5,4 +5,6 @@
 <fullyQualifiedTypeName name="data.Persona"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="data.Estudiante"/>
+<fullyQualifiedTypeName name="data.Empleado"/>
 </qualifiedTypeNameHistroy>
